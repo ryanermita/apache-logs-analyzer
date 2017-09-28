@@ -32,12 +32,35 @@ def get_log_ips(log):
 
 
 def activities_per_ip(log_file):
-    pass
+    """
+    Read log file and return all activities per ip
+    Save all activities of ip to a file named <ip with underscore as dot>.log
+    """
+    unique_ips = []
+    with open(log_file) as logs:
+        for line in logs:
+            ips = get_log_ips(line)
+            for ip in ips:
+                filename = ip.replace(".", "_")
+
+                # Write the log in a file named after the ip
+                file = open('%s.log' % filename, 'a')
+                file.write(str(line))
+                file.write("\n")
+                file.close()
+
+            # for the sake of faster testing
+            # comment out this block of code until the break statement to
+            # get all the activities per ip in a log file.
+                if ip not in unique_ips:
+                    unique_ips.append(ip)
+            if len(unique_ips) == 10:
+                break
 
 
 def get_unique_ips(log_file):
     """
-    Read a log file and return all unique ip with number of hits and
+    Read log file and return all unique ip with number of hits and
     country of origin.
     Save all unique ips and its info to a file named unique_ips.log
     """
@@ -79,7 +102,8 @@ def get_unique_ips(log_file):
 
 
 COMMANDS = {
-            'get_unique_ips': get_unique_ips
+            'get_unique_ips': get_unique_ips,
+            'activities_per_ip': activities_per_ip
            }
 
 cmd_parser = argparse.ArgumentParser(description="Parse Apache Log")
