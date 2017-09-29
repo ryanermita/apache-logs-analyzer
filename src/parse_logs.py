@@ -31,6 +31,24 @@ def get_log_ips(log):
     return ips
 
 
+def get_file_inclusion(log_file):
+    """
+    Read log file and return all remote file inclusion activities
+    Save all remote file inclusion activities to a file named remote_file_inclusion.log
+    """
+    terms = ['?file', 'file=']
+
+    with open(log_file) as logs:
+        for line in logs:
+            for term in terms:
+                if term in line:
+                    # Write the log in a file named remote_file_inclusion.log
+                    file = open('remote_file_inclusion.log', 'a')
+                    file.write(str(line))
+                    file.write("\n")
+                    file.close()
+
+
 def get_sql_injections(log_file):
     """
     Read log file and return all sql injection activities
@@ -124,7 +142,8 @@ def get_unique_ips(log_file):
 COMMANDS = {
             'get_unique_ips': get_unique_ips,
             'activities_per_ip': activities_per_ip,
-            'get_sql_injections': get_sql_injections
+            'get_sql_injections': get_sql_injections,
+            'get_file_inclusion': get_file_inclusion
            }
 
 cmd_parser = argparse.ArgumentParser(description="Parse Apache Log")
