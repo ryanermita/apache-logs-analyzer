@@ -31,6 +31,26 @@ def get_log_ips(log):
     return ips
 
 
+def get_sql_injections(log_file):
+    """
+    Read log file and return all sql injection activities
+    Save all sql injection activities to a file named sql_injections.log
+    """
+    sqli = ['union+', 'union*', 'system\(', 'eval(', 'group_concat',
+            'column_name', 'order by', 'insert into', 'SELECT', 'load_file', 'concat',
+            '@@version']
+
+    with open(log_file) as logs:
+        for line in logs:
+            for term in sqli:
+                if term in line:
+                    # Write the log in a file named sql_injections.log
+                    file = open('sql_injections.log', 'a')
+                    file.write(str(line))
+                    file.write("\n")
+                    file.close()
+
+
 def activities_per_ip(log_file):
     """
     Read log file and return all activities per ip
@@ -103,7 +123,8 @@ def get_unique_ips(log_file):
 
 COMMANDS = {
             'get_unique_ips': get_unique_ips,
-            'activities_per_ip': activities_per_ip
+            'activities_per_ip': activities_per_ip,
+            'get_sql_injections': get_sql_injections
            }
 
 cmd_parser = argparse.ArgumentParser(description="Parse Apache Log")
