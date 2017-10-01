@@ -52,3 +52,35 @@ virtualenv venv
 pip install -r requirements.txt
 `
 
+## User Guide
+***all of the commands will run inside the project root directory***
+
+* Detecting unique IPs with corresponding country and number of hits
+
+`
+python src/parse_logs.py -c get_unique_ips -F <apache logs to analyze>
+`
+
+* Detecting all activities per IP
+
+`
+python src/parse_logs.py -c activities_per_ip -F <apache logs to analyze>
+`
+
+* Detecting SQL injection attacks
+
+`
+python src/parse_logs.py -c get_sql_injections -F <apache logs to analyze>
+`
+
+* Detecting remote file inclusion attack
+
+`
+python src/parse_logs.py -c get_file_inclusion -F <apache logs to analyze>
+`
+
+* Detecting web shells attack
+
+`
+python src/parse_logs.py -c get_web_shells_attack -F <apache logs to analyze>
+`
