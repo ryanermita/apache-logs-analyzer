@@ -31,6 +31,22 @@ def get_log_ips(log):
     return ips
 
 
+def get_web_shells_attack(log_file):
+    """
+    Read log file and return all detected web shells attack.
+    Save all remote file inclusion activities to a file named detected_web_shells_attack.log
+    """
+    with open(log_file) as logs:
+        for line in logs:
+            if 'cmd=' in line:
+                # Write the log in a file named remote_file_inclusion.log
+                file = open('detected_web_shells_attack.log', 'a')
+                file.write(str(line))
+                file.write("\n")
+                file.close()
+    print "Detected Web shells attack saved to detected_web_shells_attack.log"
+
+
 def get_file_inclusion(log_file):
     """
     Read log file and return all remote file inclusion activities
@@ -47,6 +63,8 @@ def get_file_inclusion(log_file):
                     file.write(str(line))
                     file.write("\n")
                     file.close()
+
+    print "Detected file inclusion attack saved to remote_file_inclusion.log"
 
 
 def get_sql_injections(log_file):
@@ -67,6 +85,8 @@ def get_sql_injections(log_file):
                     file.write(str(line))
                     file.write("\n")
                     file.close()
+
+    print "Detected sql injection attack saved to sql_injections.log"
 
 
 def activities_per_ip(log_file):
@@ -94,6 +114,8 @@ def activities_per_ip(log_file):
                     unique_ips.append(ip)
             if len(unique_ips) == 10:
                 break
+
+    print "Fetching activities per IP - Done!"
 
 
 def get_unique_ips(log_file):
@@ -137,13 +159,15 @@ def get_unique_ips(log_file):
 
         # close file after writing the list of ips.
         file.close()
+    print "Fetching unique IPs - Done! saved to a file named unique_ips.log"
 
 
 COMMANDS = {
             'get_unique_ips': get_unique_ips,
             'activities_per_ip': activities_per_ip,
             'get_sql_injections': get_sql_injections,
-            'get_file_inclusion': get_file_inclusion
+            'get_file_inclusion': get_file_inclusion,
+            'get_web_shells_attack': get_web_shells_attack
            }
 
 cmd_parser = argparse.ArgumentParser(description="Parse Apache Log")
