@@ -1,1 +1,1 @@
-# apache-log-parser
+# Apache Logs Analyzer
