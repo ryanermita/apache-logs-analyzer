@@ -29,58 +29,64 @@ this script serves as my test assignment from [Horangi](https://horangi.com/) wh
 ## Installation Guide
 * Clone this repo and enter the script folder
 
-`
-git clone https://github.com/ryanermita/apache-logs-analyzer.git && cd apache-logs-analyzer/
-`
+  `
+  git clone https://github.com/ryanermita/apache-logs-analyzer.git && cd apache-logs-analyzer/
+  `
 
 * install [virtualenv](https://virtualenv.pypa.io/en/stable/) to isolate packages used in this script
 * create virtualenv instance
 
-`
-virtualenv venv
-`
+  `
+  virtualenv venv
+  `
 
 * enter the virtualenv instance
 
-`
-. venv/bin/activate
-`
+  `
+  . venv/bin/activate
+  `
 
 * install dependency packages
 
-`
-pip install -r requirements.txt
-`
+  `
+  pip install -r requirements.txt
+  `
 
 ## User Guide
 ***all of the commands will run inside the project root directory***
 
+* script description and command list
+
+  `
+  python src/parse_logs.py -h
+  `
+
 * Detecting unique IPs with corresponding country and number of hits
 
-`
-python src/parse_logs.py -c get_unique_ips -F <apache logs to analyze>
-`
+  `
+  python src/parse_logs.py -c get_unique_ips -F <apache logs to analyze>
+  `
 
 * Detecting all activities per IP
 
-`
-python src/parse_logs.py -c activities_per_ip -F <apache logs to analyze>
-`
+  `
+  python src/parse_logs.py -c activities_per_ip -F <apache logs to analyze>
+  `
 
 * Detecting SQL injection attacks
 
-`
-python src/parse_logs.py -c get_sql_injections -F <apache logs to analyze>
-`
+  `
+  python src/parse_logs.py -c get_sql_injections -F <apache logs to analyze>
+  `
 
 * Detecting remote file inclusion attack
 
-`
-python src/parse_logs.py -c get_file_inclusion -F <apache logs to analyze>
-`
+  `
+  python src/parse_logs.py -c get_file_inclusion -F <apache logs to analyze>
+  `
 
 * Detecting web shells attack
 
-`
-python src/parse_logs.py -c get_web_shells_attack -F <apache logs to analyze>
-`
+  `
+  python src/parse_logs.py -c get_web_shells_attack -F <apache logs to analyze>
+  `
