@@ -55,10 +55,11 @@ this script serves as my test assignment from [Horangi](https://horangi.com/) wh
 ## User Guide
 all of the commands will run inside the virtualenv project root directory.
 Run this command below inside the project root directory before using the script.
-  
-    `
-    . venv/bin/activate
-    `
+
+  `
+  . venv/bin/activate
+  `
+
 
 * script description and command list
 
