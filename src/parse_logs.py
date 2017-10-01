@@ -170,9 +170,11 @@ COMMANDS = {
             'get_web_shells_attack': get_web_shells_attack
            }
 
-cmd_parser = argparse.ArgumentParser(description="Parse Apache Log")
-cmd_parser.add_argument('-c', '--command', required=True, choices=list(COMMANDS.keys()))
-cmd_parser.add_argument('-F', '--file', required=True)
+cmd_parser = argparse.ArgumentParser(description="A simple script that analyze apache log.")
+cmd_parser.add_argument('-c', '--command', required=True,
+                        choices=list(COMMANDS.keys()),
+                        help="analyze command to execute to a log file.")
+cmd_parser.add_argument('-F', '--file', required=True, help='log file that needs to be analyzed.')
 args = cmd_parser.parse_args()
 
 if __name__ == "__main__":
